@@ -1,0 +1,16 @@
+let name = "Mürf"
+let realm = "Sargeras"
+let points = ""
+
+fetch(`https://us.api.battle.net/wow/character/${realm}/${name}?locale=en_US&apikey=xms2dz54spk2pnvs6aehj52hhn836frd`)
+.then(r => r.json())
+.then(r => {
+  console.log(r['achievementPoints'])
+  console.log(r['name'])
+
+
+    points = r['achievementPoints']
+    document.getElementById('name').innerHTML = points
+
+})
+

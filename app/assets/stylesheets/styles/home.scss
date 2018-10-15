@@ -1,0 +1,69 @@
+
+a{
+    text-decoration: none;
+    position: absolute;
+    top: 30%;
+    left: 5%;
+}
+#homeCalcWrapper{
+    position: relative;
+    top: 30%;
+    width: 350px;
+    height: 200px;
+    border: 4px solid #054d75;
+    text-decoration: none;
+}
+#homeCalcWrapper:hover {
+    -webkit-filter: brightness(130%);
+}
+#calcSplash{
+    width: 350px;
+    height: 200px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+#calcHeader{
+    position: relative;
+    z-index: 2;
+    top: 25%;
+    left: 20%;
+    font-size: 60px;
+    color: #06abfb;
+    font-family: 'bNet'
+}
+
+#dicWrapper{ //heh
+    position: relative;
+    right: 5%;
+    top: 70%;
+    float: right;
+    width: 350px;
+    height: 200px;
+    border: 4px solid #054d75;
+    text-decoration: none;
+    margin-bottom: 20px;
+}
+
+#dicSplash{
+    width: 350px;
+    height: 200px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+#dicHeader{
+    position: relative;
+    z-index: 2;
+    top: 20%;
+    text-align: center;
+    font-size: 60px;
+    color: #06abfb;
+    font-family: 'bNet'
+}
+#dicWrapper:hover {
+    -webkit-filter: brightness(130%);
+}
+

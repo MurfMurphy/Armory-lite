@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ArmoryLite</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+<div id="homeWrapper">
+
+    <% if notice %>
+      <div class="flash" id="alertSuccess"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+      <div class="flash" id="alertFail"><%= alert %></div>
+    <% end %>
+
+    <div class="user-sessions">
+    <% if user_signed_in? %>
+        <%= link_to('Profile', '/profile')%>
+        <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+    <% else %>
+        <%= link_to('Login', new_user_session_path)  %>  
+        <%= link_to('Sign-up', '/users/sign_up')%>
+    <% end %>
+    </div>
+
+    <%= yield %>
+</div>
+  </body>
+</html>

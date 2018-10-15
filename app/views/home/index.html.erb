@@ -1,0 +1,25 @@
+<div id="homeWrapper">
+
+    <p class="user-sessions">
+    <% if user_signed_in? %>
+        <%= link_to('Profile', '/profile')%>
+        <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+    <% else %>
+        <%= link_to('Login', new_user_session_path)  %>  
+        <%= link_to('Sign-up', '/users/sign_up')%>
+    <% end %>
+    </p>
+
+<a href="/calculator" id="calcLink">
+    <div id="homeCalcWrapper">
+        <%= image_tag("bfa-splash.jpg", id: "calcSplash")%>
+        <h1 id="calcHeader">FIGHT CLUB</h1>
+    </div>
+</a>
+
+<div id="dicWrapper">
+    <%= image_tag("bfa-tree-split.jpeg", id: "dicSplash")%>
+    <h1 id="dicHeader">COMING SOON</h1> 
+</div>
+
+</div>
