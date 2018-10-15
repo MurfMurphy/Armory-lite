@@ -1,16 +1,25 @@
-let name = "Mürf"
-let realm = "Sargeras"
-let points = ""
+let char1Name = "",
+    char1Realm = "",
+    char1AchPts = "",
+    char1Hnr = "",
+    char1Thumb = "",
+    char1Points = 0,
+    char2Name = "",
+    char2Realm = "",
+    char2AchPts = "",
+    char2Hnr = "",
+    char2Thumb = "",
+    char2Points = 0,
+    id = 'd10e052f60f54b3faa1d45ac314963cb',
+    secret = 'aaIQTibsWLvi6Axqa6DWM72G0r0oMsBA',
+    accessToken = ""
 
-fetch(`https://us.api.battle.net/wow/character/${realm}/${name}?locale=en_US&apikey=xms2dz54spk2pnvs6aehj52hhn836frd`)
-.then(r => r.json())
-.then(r => {
-  console.log(r['achievementPoints'])
-  console.log(r['name'])
-
-
-    points = r['achievementPoints']
-    document.getElementById('name').innerHTML = points
-
-})
+    window.onload = function(){
+        fetch(`https://us.battle.net/oauth/token?grant_type=client_credentials&client_id=${id}&client_secret=${secret}`)
+        .then(r => r.json())
+        .then(r => {
+            console.log(r)
+            accessToken = r['access_token']
+        })
+    }
 
