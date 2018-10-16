@@ -3,23 +3,80 @@ let char1Name = "",
     char1AchPts = "",
     char1Hnr = "",
     char1Thumb = "",
+    char1Mounts = "",
+    char1Pets = "",
     char1Points = 0,
     char2Name = "",
     char2Realm = "",
     char2AchPts = "",
     char2Hnr = "",
     char2Thumb = "",
+    char2Mounts = "",
+    char2Pets = "",
     char2Points = 0,
-    id = 'd10e052f60f54b3faa1d45ac314963cb',
-    secret = 'aaIQTibsWLvi6Axqa6DWM72G0r0oMsBA',
-    accessToken = ""
+    secret = 'xms2dz54spk2pnvs6aehj52hhn836frd'
 
-    window.onload = function(){
-        fetch(`https://us.battle.net/oauth/token?grant_type=client_credentials&client_id=${id}&client_secret=${secret}`)
-        .then(r => r.json())
-        .then(r => {
-            console.log(r)
-            accessToken = r['access_token']
-        })
+function char1Calls(){
+    fetch(`https://us.api.battle.net/wow/character/${char1Realm}/${char1Name}?locale=en_US&apikey=${secret}`)
+    .then(r => r.json())
+    .then(r => {
+        char1Thumb = r['thumbnail']
+        char1Hnr = r['totalHonor']
+        char1AchPts = r['achievementPoints']
+
+    })
+
+    fetch(`https://us.api.battle.net/wow/character/${char1Realm}/${char1Name}?locale=en_US&apikey=${secret}&fields=mounts`)
+    .then(r => r.json())
+    .then(r => {
+
+        char1Mounts = r.mounts.numCollected
+    })
+
+    fetch(`https://us.api.battle.net/wow/character/${char1Realm}/${char1Name}?locale=en_US&apikey=${secret}&fields=pets`)
+    .then(r => r.json())
+    .then(r => {
+
+        char1Pets = r.pets.numCollected
+    })
+}
+
+function char2Calls(){
+    fetch(`https://us.api.battle.net/wow/character/${char2Realm}/${char2Name}?locale=en_US&apikey=${secret}`)
+    .then(r => r.json())
+    .then(r => {
+        char2Thumb = r['thumbnail']
+        char2Hnr = r['totalHonor']
+        char2AchPts = r['achievementPoints']
+
+    })
+
+    fetch(`https://us.api.battle.net/wow/character/${char2Realm}/${char2Name}?locale=en_US&apikey=${secret}&fields=mounts`)
+    .then(r => r.json())
+    .then(r => {
+
+        char2Mounts = r.mounts.numCollected
+    })
+
+    fetch(`https://us.api.battle.net/wow/character/${char2Realm}/${char2Name}?locale=en_US&apikey=${secret}&fields=pets`)
+    .then(r => r.json())
+    .then(r => {
+
+        char2Pets = r.pets.numCollected
+    })
+}
+
+document.getElementById('calculatorStart').onclick = function(){
+        char1Name = document.getElementById('char1NameField').value.toString();
+        char1Realm = document.getElementById('char1RealmField').value.toString();
+        char2Name = document.getElementById('char2NameField').value.toString();
+        char2Realm = document.getElementById('char2RealmField').value.toString();
+    if (char1Name == "" || char1Realm == "" || char2Name == "" || char2Realm == ""){
+        location.reload
+    } else {
+        
+        char1Calls();
+        char2Calls();
     }
+}
 

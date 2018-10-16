@@ -1,5 +1,7 @@
 {
   "name": "armory-lite",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "fetch-jsonp": "^1.1.3"
+  }
 }
