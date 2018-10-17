@@ -122,7 +122,7 @@ function statCount(){
 function charStatSheet(){
     document.getElementById('charVersusScreen').style.display = "none";
     document.getElementById('charStatScreen').style.display = "grid";
-    document.getElementById('char1Thumb').innerHTML = `<img id="charThumb1" src="http://render-us.worldofwarcraft.com/character/${char1Thumb}">`
+    document.getElementById('char1Thumb').innerHTML = `<img id="charThumb1" src="https://render-us.worldofwarcraft.com/character/${char1Thumb}">`
     document.getElementById('char1Ilvl').innerHTML = `<h1>Avg. Item Level</h1>
                                                       <h1>${char1Ilvl}</h1>`
     document.getElementById('char1AchPts').innerHTML = `<h1>Achievement Points</h1>
@@ -133,7 +133,7 @@ function charStatSheet(){
                                                       <h1>${char1Mounts}</h1>`
     document.getElementById('char1Pets').innerHTML = `<h1>Total Pets</h1>
                                                       <h1>${char1Pets}</h1>`
-    document.getElementById('char2Thumb').innerHTML = `<img id="charThumb2" src="http://render-us.worldofwarcraft.com/character/${char2Thumb}">`
+    document.getElementById('char2Thumb').innerHTML = `<img id="charThumb2" src="https://render-us.worldofwarcraft.com/character/${char2Thumb}">`
     document.getElementById('char2Ilvl').innerHTML = `<h1>Avg. Item Level</h1>
                                                       <h1>${char2Ilvl}</h1>`
     document.getElementById('char2AchPts').innerHTML = `<h1>Achievement Points</h1>
@@ -154,9 +154,9 @@ function thumbNail(){
     char2Render = char2Thumb.replace("avatar", "main");
     document.getElementById('charVersusScreen').style.display = "grid"
 
-    document.getElementById('char1Image').innerHTML = `<img class="charImage" src="http://render-us.worldofwarcraft.com/character/${char1Render}">
+    document.getElementById('char1Image').innerHTML = `<img class="charImage" src="https://render-us.worldofwarcraft.com/character/${char1Render}">
                                                         <h1 id="char1Name">${char1Name}</h1>`
-    document.getElementById('char2Image').innerHTML = `<img class="charImage" src="http://render-us.worldofwarcraft.com/character/${char2Render}">
+    document.getElementById('char2Image').innerHTML = `<img class="charImage" src="https://render-us.worldofwarcraft.com/character/${char2Render}">
                                                         <h1 id="char2Name">${char2Name}</h1>`
 
     setTimeout(function(){charStatSheet();}, 5500)
