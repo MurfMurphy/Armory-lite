@@ -179,10 +179,10 @@ if (char1Name === "" || char1Realm === "" || char2Name === "" || char2Realm === 
 }
 
 //Button to launch the program
-window.onload=function(){
-document.getElementById('calculatorStart').addEventListener("click", submitCalls);
-document.getElementById('calculatorReset').addEventListener("click", resetCalc);
-}
+document.addEventListener("turbolinks:load",function(){
+  document.getElementById('calculatorStart').addEventListener("click", submitCalls);
+  document.getElementById('calculatorReset').addEventListener("click", resetCalc);
+})
 
 function resetCalc(){
     location.reload();

@@ -22,16 +22,15 @@ html {
     z-index: 2;
 }
 .navLinks1{
-    display: inline;
+    display: inline-block;
     color: #06abfb;
     text-align: right;
 }
 .navLinks2{
-    display: inline;
+    display: inline-block;
     color: #06abfb;
-    padding-left: 80px;
+    margin-left: 80px;
 
-    
 }
 
 .flash{
