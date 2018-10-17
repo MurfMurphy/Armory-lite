@@ -3,25 +3,30 @@ let char1Name = "",
     char1AchPts = "",
     char1Hnr = "",
     char1Thumb = "",
+    char1Render = "",
     char1Mounts = "",
     char1Pets = "",
+    char1Ilvl = "",
     char1Points = 0,
     char2Name = "",
     char2Realm = "",
     char2AchPts = "",
     char2Hnr = "",
     char2Thumb = "",
+    char2Render = "",
     char2Mounts = "",
     char2Pets = "",
+    char2Ilvl = "",
     char2Points = 0,
     secret = 'xms2dz54spk2pnvs6aehj52hhn836frd'
 
+//Character 1 Calls
 function char1Calls(){
     fetch(`https://us.api.battle.net/wow/character/${char1Realm}/${char1Name}?locale=en_US&apikey=${secret}`)
     .then(r => r.json())
     .then(r => {
         char1Thumb = r['thumbnail']
-        char1Hnr = r['totalHonor']
+        char1Hnr = r['totalHonorableKills']
         char1AchPts = r['achievementPoints']
 
     })
@@ -39,14 +44,21 @@ function char1Calls(){
 
         char1Pets = r.pets.numCollected
     })
+    fetch(`https://us.api.battle.net/wow/character/${char1Realm}/${char1Name}?locale=en_US&apikey=${secret}&fields=items`)
+    .then(r => r.json())
+    .then(r => {
+
+        char1Ilvl = r.items.averageItemLevel
+    })
 }
 
+//Character 2 Calls
 function char2Calls(){
     fetch(`https://us.api.battle.net/wow/character/${char2Realm}/${char2Name}?locale=en_US&apikey=${secret}`)
     .then(r => r.json())
     .then(r => {
         char2Thumb = r['thumbnail']
-        char2Hnr = r['totalHonor']
+        char2Hnr = r['totalHonorableKills']
         char2AchPts = r['achievementPoints']
 
     })
@@ -64,19 +76,118 @@ function char2Calls(){
 
         char2Pets = r.pets.numCollected
     })
+    fetch(`https://us.api.battle.net/wow/character/${char2Realm}/${char2Name}?locale=en_US&apikey=${secret}&fields=items`)
+    .then(r => r.json())
+    .then(r => {
+
+        char2Ilvl = r.items.averageItemLevel
+    })
 }
 
-document.getElementById('calculatorStart').onclick = function(){
-        char1Name = document.getElementById('char1NameField').value.toString();
-        char1Realm = document.getElementById('char1RealmField').value.toString();
-        char2Name = document.getElementById('char2NameField').value.toString();
-        char2Realm = document.getElementById('char2RealmField').value.toString();
-    if (char1Name == "" || char1Realm == "" || char2Name == "" || char2Realm == ""){
-        location.reload
-    } else {
-        
-        char1Calls();
-        char2Calls();
+function winFunction(){
+    if(char1Points > char2Points){
+        document.getElementById("char1Win").style.display = "inline";
+        document.getElementById("calculatorReset").style.visibility = "visible";
+    } else if (char2Points > char1Points){
+        document.getElementById("char2Win").style.display = "inline";
+        document.getElementById("calculatorReset").style.visibility = "visible";
     }
 }
+
+//Increment Points
+function statCounter(char1Stat, char2Stat){
+    if(char1Stat == char2Stat){
+        char1Points++
+        char2Points++
+    } else if (char1Stat > char2Stat){
+        char1Points++
+    } else if (char1Stat < char2Stat){
+        char2Points++
+    }
+}
+
+//Run Increment function for each stat
+function statCount(){
+    statCounter(char1AchPts, char2AchPts);
+    statCounter(char1Hnr, char2Hnr);
+    statCounter(char1Mounts, char2Mounts);
+    statCounter(char1Pets, char2Pets);
+    statCounter(char1Ilvl, char2Ilvl);
+
+    setTimeout(function(){winFunction();}, 4000);
+}
+
+
+//put character api calls to div/count
+function charStatSheet(){
+    document.getElementById('charVersusScreen').style.display = "none";
+    document.getElementById('charStatScreen').style.display = "grid";
+    document.getElementById('char1Thumb').innerHTML = `<img id="charThumb1" src="http://render-us.worldofwarcraft.com/character/${char1Thumb}">`
+    document.getElementById('char1Ilvl').innerHTML = `<h1>Avg. Item Level</h1>
+                                                      <h1>${char1Ilvl}</h1>`
+    document.getElementById('char1AchPts').innerHTML = `<h1>Achievement Points</h1>
+                                                      <h1>${char1AchPts}</h1>`
+    document.getElementById('char1Honor').innerHTML = `<h1>Honorable Kills</h1>
+                                                      <h1>${char1Hnr}</h1>`
+    document.getElementById('char1Mounts').innerHTML = `<h1>Total Mounts</h1>
+                                                      <h1>${char1Mounts}</h1>`
+    document.getElementById('char1Pets').innerHTML = `<h1>Total Pets</h1>
+                                                      <h1>${char1Pets}</h1>`
+    document.getElementById('char2Thumb').innerHTML = `<img id="charThumb2" src="http://render-us.worldofwarcraft.com/character/${char2Thumb}">`
+    document.getElementById('char2Ilvl').innerHTML = `<h1>Avg. Item Level</h1>
+                                                      <h1>${char2Ilvl}</h1>`
+    document.getElementById('char2AchPts').innerHTML = `<h1>Achievement Points</h1>
+                                                      <h1>${char2AchPts}</h1>`
+    document.getElementById('char2Honor').innerHTML = `<h1>Honorable Kills</h1>
+                                                      <h1>${char2Hnr}</h1>`
+    document.getElementById('char2Mounts').innerHTML = `<h1>Total Mounts</h1>
+                                                      <h1>${char2Mounts}</h1>`
+    document.getElementById('char2Pets').innerHTML = `<h1>Total Pets</h1>
+                                                      <h1>${char2Pets}</h1>`
+
+    setTimeout(function(){statCount();}, 6000)
+}
+
+//parse thumbnails and do intro animation
+function thumbNail(){
+    char1Render = char1Thumb.replace("avatar", "main");
+    char2Render = char2Thumb.replace("avatar", "main");
+    document.getElementById('charVersusScreen').style.display = "grid"
+
+    document.getElementById('char1Image').innerHTML = `<img class="charImage" src="http://render-us.worldofwarcraft.com/character/${char1Render}">
+                                                        <h1 id="char1Name">${char1Name}</h1>`
+    document.getElementById('char2Image').innerHTML = `<img class="charImage" src="http://render-us.worldofwarcraft.com/character/${char2Render}">
+                                                        <h1 id="char2Name">${char2Name}</h1>`
+
+    setTimeout(function(){charStatSheet();}, 5500)
+}
+
+//push all field data through and reset div for next animation
+function submitCalls(){
+    char1Name = document.getElementById('char1NameField').value.toString();
+    char1Realm = document.getElementById('char1RealmField').value.toString();
+    char2Name = document.getElementById('char2NameField').value.toString();
+    char2Realm = document.getElementById('char2RealmField').value.toString();
+if (char1Name === "" || char1Realm === "" || char2Name === "" || char2Realm === ""){
+    location.reload();
+} else {
+    document.getElementById('searchBar').style.display = "none";
+    char1Calls();
+    char2Calls();
+    setTimeout(function(){thumbNail();}, 2000);
+}
+}
+
+//Button to launch the program
+window.onload=function(){
+document.getElementById('calculatorStart').addEventListener("click", submitCalls);
+document.getElementById('calculatorReset').addEventListener("click", resetCalc);
+}
+
+function resetCalc(){
+    location.reload();
+}
+
+
+
 

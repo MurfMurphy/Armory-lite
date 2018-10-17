@@ -5,6 +5,7 @@
 }
 
 #calculator{
+    position: relative;
     background-color: #003152;
     border: 4px solid #0b1c2e;
     margin: 0 auto;
@@ -15,45 +16,49 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
+#charVersusScreen{
+    display: none;
+    z-index: 3;
+    grid-template-columns: 1fr 1fr;
+}
 
 .charImage{
-    width: 195px;
-    height: 600px;
+    width: 193px;
+    height: 590px;
     object-fit: cover;
     overflow: hidden;
     margin: 0;
     border: 5px solid black;
 }
 #char1Image img{
-    // position: absolute;
-    // top: 0;
-    // left: 0;
-    // grid-column-start: 1;
-    // float: left;
     grid-column-start: 0;
     grid-column-end: 1;
     transform: scaleX(-1);
+    animation: fadeInLeft 1s forwards;
+
 }
 #char1Name {
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 25px;
-    color: white;
+    color: #06abfb;
     z-index: 2;
     position: absolute;
     bottom: 5%;
     left: 10%;
 }
 #char2Image img{
-    // position: absolute;
-    // top: 0;
-    // right: 0;
-    // grid-column-start: 2;
-    // float: right;
     grid-column-start: 1;
     grid-column-end: 2;
+    border-left: none;
+
+    animation: fadeInRight 1s forwards;
+
+    // animation: rightSlide 0.5s forwards;
 }
 #char2Name {
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 25px;
-    color: white;
+    color: #06abfb;
     z-index: 2;
     position: absolute;
     bottom: 5%;
@@ -67,4 +72,194 @@
     height: 125px;
     z-index: 2;
 
+    animation: slam 2s forwards
 }
+#searchBar{
+    font-family: 'bNet';
+    color: #06abfb;
+    #searchHead{
+        position: absolute;
+        top: 5%;
+        right: 0;
+        left: 0;
+    }
+}
+#char1Search{
+    position: absolute;
+    top: 20%;
+    left: 5%;
+
+    h1{
+        padding: 10px 0px 10px 0px;
+    }
+}
+#char2Search{
+    position: absolute;
+    top: 20%;
+    right: 5%;
+
+    h1{
+        padding: 10px 0px 10px 0px;
+    }
+}
+
+#calculatorStart{
+    position: absolute;
+    top: 50%;
+    left: 37%;
+    color: #06abfb;
+    width: 100px;
+    height: 50px;
+    font-size: 25px;
+}
+
+#charStatScreen{
+    display: none;
+    grid-template-columns: 1fr 1fr;
+
+}
+#char1Stats{
+    grid-column-start: 0;
+    grid-column-end: 1;
+    font-family: 'bNet';
+    color: #06abfb;
+    width: 193px;
+    height: 590px;
+    margin: 0;
+    border: 5px solid black;
+    div{
+        text-align: center;
+        padding: 20px 0px 20px 0px;
+        animation: fadeInText 2s forwards;
+    }
+}
+#char2Stats{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    font-family: 'bNet';
+    color: #06abfb;
+    width: 193px;
+    height: 590px;
+    margin: 0;
+    border: 5px solid black;
+    border-left: none;
+    img{
+        transform: scaleX(-1);
+    }
+    div{
+        text-align: center;
+        padding: 20px 0px 20px 0px;
+        animation: fadeInText 2s forwards;
+    }
+}
+
+#char1Win {
+    display:none;
+    width: 80px;
+    height: 80px;
+    z-index: 3;
+    position: absolute;
+    top: 13%;
+    left: 15%;
+    animation: medalSlam 1s forwards;
+
+}
+#char2Win {
+    display:none;
+    width: 80px;
+    height: 80px;
+    z-index: 3;
+    position: absolute;
+    top: 13%;
+    right: 15%;
+    animation: medalSlam 1s forwards;
+}
+#calculatorReset{
+    color: #06abfb;
+    width: 100px;
+    height: 50px;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 10%;
+    left: 37%;
+
+}
+
+@keyframes fadeInText {
+    from{
+        opacity: 0;
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        -webkit-transform: scaleX(-1) translate3d(100%, 0, 0);
+        transform: scaleX(-1) translate3d(100%, 0, 0);
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        -webkit-transform: translate3d(100%, 0, 0);
+        transform: translate3d(100%, 0, 0);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+
+
+@keyframes slam {
+    from {
+        opacity: 0;
+        -webkit-transform: scale(5);
+        transform: scale(5);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes medalSlam {
+    from {
+        opacity: 0;
+        -webkit-transform: scale(3);
+        transform: scale(3);
+    }
+
+    to {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+// //unused animation for smoothing VS to stat transition
+// @keyframes fadeOut{
+//     from{
+//         z-index: 3;
+//         opacity: 1;
+//     }
+//     to {
+//         opacity: 0;
+//         display:none;
+//     }
+// }

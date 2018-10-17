@@ -5,6 +5,7 @@
     <div id="calculator">
 
         <div id="searchBar">
+            <h1 id = 'searchHead'>Enter two characters to see who is the greatest of all time</h1>
             <div id="char1Search">
                 <h1>Character</h1>
                 <input id="char1NameField">
@@ -24,15 +25,47 @@
 
 
         </div>
-        <!--<div id="char1Image">
-            <img class="charImage" src="http://render-us.worldofwarcraft.com/character/sargeras/178/165585586-main.jpg">
-            <h1 id="char1Name">Sample Text</h1>
+        <div id = "charVersusScreen">
+            <div id="char1Image">
+            </div>
+            <div id="char2Image">
+            </div>
+            <%= image_tag("vs.png", id:"versusIMG") %>
         </div>
-        <div id="char2Image">
-            <img class="charImage" src="http://render-us.worldofwarcraft.com/character/sargeras/71/151405383-main.jpg">
-            <h1 id="char2Name">Sample Text</h1>
+        <div id= "charStatScreen">
+            <div id="char1Stats">
+                <div id="char1Thumb">
+                </div>
+                <div id="char1Ilvl">
+                </div>
+                <div id="char1AchPts">
+                </div>
+                <div id="char1Honor">
+                </div>
+                <div id="char1Mounts">
+                </div>
+                <div id="char1Pets">
+                </div>
+                <%=image_tag("medal.png", id: "char1Win")%>
+            </div>
+            <div id="char2Stats">
+                <div id="char2Thumb">
+                </div>
+                <div id="char2Ilvl">
+                </div>
+                <div id="char2AchPts">
+                </div>
+                <div id="char2Honor">
+                </div>
+                <div id="char2Mounts">
+                </div>
+                <div id="char2Pets">
+                </div>
+                <%=image_tag("medal.png", id: "char2Win")%>
+
+            </div>
+            <input type="submit" value="Reset" id="calculatorReset" >
         </div>
-        <%= image_tag("vs.png", id:"versusIMG") %>-->
 
     </div>
 
